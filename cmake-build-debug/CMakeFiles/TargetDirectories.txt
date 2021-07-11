@@ -1,0 +1,3 @@
+/Users/kyle/Desktop/Projekte/commodore64emulator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/kyle/Desktop/Projekte/commodore64emulator/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kyle/Desktop/Projekte/commodore64emulator/cmake-build-debug/CMakeFiles/commodore64emulator.dir
