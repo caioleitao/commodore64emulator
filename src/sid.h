@@ -1,0 +1,8 @@
+//
+// Created by Kyle on 7/14/21.
+//
+
+#ifndef COMMODORE64EMULATOR_SID_H
+#define COMMODORE64EMULATOR_SID_H
+
+#endif //COMMODORE64EMULATOR_SID_H
