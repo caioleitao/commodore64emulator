@@ -535,5 +535,90 @@ void Vic::draw_mcsprite(int x, int y, int sprite, int row) {
 }
 
 void Vic::draw_raster_sprites() {
-    //continue today
+    if(sprites_enabled- != 0) {
+        int rstr = raster_counter();
+        int y = rstr - kFirstVisibleLine;
+        int  sp_y = rstr - kSpriteVisibleLine;
+        for(int n=7; n>=0; n--) {
+            int height = is_double_height_sprite(n) ? kSpriteHeight * 2 : kSpriteHeight;
+            if(is_sprite_enabled(n)) &&
+            sp_y >= my_[n] &&
+            sp_y < my_[n] + height) {
+    int row = sp_y - my_[y];
+    int x = kSpriteFirstCol + sprite_x(n);
+    if(is_double_height_sprite(n)) {
+        row = (sp_y - my_[n])/2;
+    }
+    if(is_multicolor_sprite(n)) {
+        draw_mcsprite(x,y,n,row);
+    } else {
+        draw_sprite(x,y,n,row);
+    }
+}
+        }
+    }
+}
+
+
+
+
+
+void Vic::raster_counter(int v) {
+    raster_c_ = (uint8_t)(x&0xff);
+    cr1_ &= 0x7f;
+    cr1_ |= ((v >> 1)&0x80);
+}
+
+int Vic::raster_counter() {
+    return (raster_c_ | ((cr1_&0x80) << 1));
+}
+
+bool Vic::is_screen_off() {
+    return ((cr1_&(1<<4)) == 0);
+}
+
+bool Vic::is_bad_line() {
+    inst rstr = raster_counter();
+    return (rstr >= 0x30 &&
+            rstr <= 0xf7 &&
+            (rstr & 0x7) == (vertical_scroll() & 0x7));
+}
+
+bool Vic::raster_irq_enabled() {
+    return ISSET_BIT(irq_enabled_,0);
+}
+
+uint8_t Vic::vertical_scroll() {
+    return(cr1_&0x7);
+}
+
+uint8_t Vic::horizontal_scroll() {
+    return(cr2_&0x7);
+}
+
+bool Vic::is_sprite_enabled(int n) {
+    return ISSET_BIT(sprite_enabled_,n);
+}
+
+bool Vic::is_background_sprite(int n) {
+    return ISSET_BIT(sprite_priority_,n);
+}
+
+bool Vic::is_double_width_sprite(int n) {
+    return ISSET_BIT(sprite_double_width_,n);
+}
+
+bool Vic::is_double_height_sprite(int n) {
+    return ISSET_BIT(sprite_double_height_,n);
+}
+
+bool Vic::is_multicolor_sprite(int n) {
+    return ISSET_BIT(sprite_multicolor_,n);
+}
+
+int Vic::sprite_x(int n) {
+    int x = mx_[n];
+    if(ISSET_BIT(msbx_,n))
+        x |= 1 << 8;
+    return x;
 }
