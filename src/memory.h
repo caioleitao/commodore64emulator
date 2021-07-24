@@ -68,7 +68,7 @@ public:
     void dump();
     void print_screen_text();
 
-    static const size_t kMemSize = 0x10000l
+    static const size_t kMemSize = 0x10000l;
 
     static const uint16_t kBaseAddrBasic    = 0xa000;
     static const uint16_t kBaseAddrKernal   = 0xe000;

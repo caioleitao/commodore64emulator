@@ -2,8 +2,8 @@
 // Created by Kyle on 7/10/21.
 //
 
-#ifdef COMMODORE64EMULATOR_C64_H
-#define COMMODORE64EMULATOR_C64_H
+#ifdef COMMODORE64EMULATOR_UTIL_H
+#define COMMODORE64EMULATOR_UTIL_H
 
 #include <stdio.h>
 
@@ -17,7 +17,7 @@
 
 #if defined(__APPLE__)
 # include <machine/endian.h>
-# include <libkern/OSByteOrder.h
+# include <libkern/OSByteOrder.h>
 #elif defined(_MSC_VER)
 # include <stdlib.h>
 #else

@@ -6,7 +6,7 @@
 #define COMMODORE64EMULATOR_IO_H
 
 #include <SDL.h>
-#include <quene>
+#include <queue>
 #include <chrono>
 #include <thread>
 #include <vector>

@@ -41,7 +41,7 @@ private:
 
     inline void sta(uint16_t addr, uint8_t cycles);
     inline void stx(uint16_t addr, uint8_t cycles);
-    inline void sty(uint16_t addr, uini8_t cycles);
+    inline void sty(uint16_t addr, uint8_t cycles);
     inline void lda(uint8_t v, uint8_t cycles);
     inline void ldx(uint8_t v, uint8_t cycles);
     inline void ldy(uint8_t v, uint8_t cycles);
@@ -114,9 +114,9 @@ public:
     Memory* memory(){return mem_;};
 
     inline uint16_t pc() {return pc_;};
-    inline void pc(uint16_t) {pc_=v;};
+    inline void pc(uint16_t v) {pc_ = v;};
     inline uint8_t sp() {return sp_;};
-    inline void sp(uint8_t v) {sp_=v;};
+    inline void sp(uint8_t v) {sp_ =v ;};
     inline uint8_t a() {return a_;};
     inline void a(uint8_t v) {a_=v;};
     inline uint8_t x() {return x_;};
